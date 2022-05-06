@@ -3,14 +3,15 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: ""
+  password: "",
+  database: "mydb_lzf"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
-  con.query("CREATE DATABASE mydb0605", function (err, result) {
+  var sql = "DROP TABLE IF EXISTS customers";
+  con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Database created");
+    console.log(result);
   });
 });

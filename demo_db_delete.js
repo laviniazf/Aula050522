@@ -4,15 +4,14 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mydb0605"
+  database: "mydb_lzf"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
-  var sql = "ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
+  var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Table altered");
+    console.log("Number of records deleted: " + result.affectedRows);
   });
 });
